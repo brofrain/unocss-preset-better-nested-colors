@@ -1,0 +1,38 @@
+{
+  "name": "unocss-preset-better-nested-colors",
+  "version": "0.1.0",
+  "description": "UnoCSS: colors with pre-defined variants and more",
+  "keywords": [
+    "unocss",
+    "unocss-preset",
+    "unocss-preset-better-nested-colors"
+  ],
+  "author": "brofrain",
+  "license": "MIT",
+  "homepage": "https://github.com/brofrain/unocss-preset-better-nested-colors",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brofrain/unocss-preset-better-nested-colors"
+  },
+  "type": "module",
+  "exports": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "vite build && tsc",
+    "release": "pnpm build && bumpp package.json --commit --push --tag && pnpm publish"
+  },
+  "peerDependencies": {
+    "unocss": "^0.31.5"
+  },
+  "devDependencies": {
+    "bumpp": "^7.1.1",
+    "pnpm": "^6.32.8",
+    "typescript": "^4.6.3",
+    "unocss": "^0.31.5",
+    "vite": "^2.9.5"
+  }
+}
