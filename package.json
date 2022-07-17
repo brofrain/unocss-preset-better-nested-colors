@@ -30,7 +30,7 @@
     "test": "vitest",
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "release": "pnpm tsc && pnpm lint && pnpm test:run && pnpm build && bumpp package.json --commit --push --tag && pnpm publish"
+    "release": "pnpm i && pnpm tsc && pnpm lint && pnpm test:run && pnpm build && bumpp package.json && pnpm publish"
   },
   "peerDependencies": {
     "unocss": ">=0.44.0"
@@ -39,17 +39,17 @@
     "@typescript-eslint/eslint-plugin": "^5.30.6",
     "@typescript-eslint/parser": "^5.30.6",
     "@typescript-eslint/utils": "^5.30.6",
-    "@unocss/preset-attributify": "^0.32.1",
-    "bumpp": "^7.1.1",
+    "@unocss/preset-attributify": "^0.44.3",
+    "bumpp": "^8.2.1",
     "c8": "^7.11.3",
-    "eslint": "^8.19.0",
+    "eslint": "^8.20.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-standard": "^17.0.0",
     "eslint-import-resolver-typescript": "^3.2.6",
     "eslint-plugin-eslint-comments": "^3.2.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsonc": "^2.3.1",
-    "eslint-plugin-markdown": "^2.2.1",
+    "eslint-plugin-markdown": "^3.0.0",
     "eslint-plugin-n": "^15.2.4",
     "eslint-plugin-prefer-arrow": "^1.2.3",
     "eslint-plugin-prettier": "^4.2.1",
@@ -58,12 +58,12 @@
     "eslint-plugin-unused-imports": "^2.0.0",
     "eslint-plugin-yml": "^1.0.0",
     "jsonc-eslint-parser": "^2.1.0",
-    "yaml-eslint-parser": "^1.0.1",
-    "pnpm": "^6.32.11",
+    "pnpm": "^7.5.2",
     "prettier": "^2.7.1",
-    "typescript": "^4.6.4",
+    "typescript": "^4.7.4",
     "unocss": "^0.44.3",
-    "vite": "^2.9.6",
-    "vitest": "^0.18.0"
+    "vite": "^3.0.0",
+    "vitest": "^0.18.1",
+    "yaml-eslint-parser": "^1.0.1"
   }
 }
