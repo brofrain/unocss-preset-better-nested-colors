@@ -22,18 +22,48 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "build": "vite build && tsc",
-    "release": "pnpm build && bumpp package.json --commit --push --tag && pnpm publish"
+    "build": "vite build && tsc --emitDeclarationOnly",
+    "tsc": "tsc --noEmit",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier -w -u . !{coverage/**,dist/**,pnpm-lock.yaml}",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "release": "pnpm tsc && pnpm lint && pnpm test:run && pnpm build && bumpp package.json --commit --push --tag && pnpm publish"
   },
   "peerDependencies": {
-    "unocss": ">=0.31.5"
+    "unocss": ">=0.44.0"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.30.6",
+    "@typescript-eslint/parser": "^5.30.6",
+    "@typescript-eslint/utils": "^5.30.6",
     "@unocss/preset-attributify": "^0.32.1",
     "bumpp": "^7.1.1",
+    "c8": "^7.11.3",
+    "eslint": "^8.19.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-import-resolver-typescript": "^3.2.6",
+    "eslint-plugin-eslint-comments": "^3.2.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsonc": "^2.3.1",
+    "eslint-plugin-markdown": "^2.2.1",
+    "eslint-plugin-n": "^15.2.4",
+    "eslint-plugin-prefer-arrow": "^1.2.3",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-unicorn": "^43.0.1",
+    "eslint-plugin-unused-imports": "^2.0.0",
+    "eslint-plugin-yml": "^1.0.0",
+    "jsonc-eslint-parser": "^2.1.0",
+    "yaml-eslint-parser": "^1.0.1",
     "pnpm": "^6.32.11",
+    "prettier": "^2.7.1",
     "typescript": "^4.6.4",
-    "unocss": "^0.32.1",
-    "vite": "^2.9.6"
+    "unocss": "^0.44.3",
+    "vite": "^2.9.6",
+    "vitest": "^0.18.0"
   }
 }

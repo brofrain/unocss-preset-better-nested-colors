@@ -1,0 +1,182 @@
+root: true
+
+ignorePatterns:
+  - 'coverage'
+  - 'dist'
+  - 'node_modules'
+  - 'pnpm-lock.yaml'
+
+env:
+  browser: true
+  es2022: true
+  es6: true
+  node: true
+
+parserOptions:
+  ecmaVersion: latest
+  sourceType: module
+
+extends:
+  - 'standard'
+  - 'eslint:recommended'
+  - 'plugin:@typescript-eslint/recommended'
+  - 'plugin:eslint-comments/recommended'
+  - 'plugin:import/recommended'
+  - 'plugin:import/typescript'
+  - 'plugin:jsonc/recommended-with-jsonc'
+  - 'plugin:markdown/recommended'
+  - 'plugin:prettier/recommended'
+  - 'plugin:promise/recommended'
+  - 'plugin:unicorn/recommended'
+  - 'plugin:yml/standard'
+  - 'plugin:yml/prettier'
+
+plugins:
+  - 'import'
+  - 'n'
+  - 'promise'
+  - 'prefer-arrow'
+  - 'unicorn'
+  - 'unused-imports'
+
+rules:
+  'arrow-body-style':
+    - warn
+    - as-needed
+  'curly':
+    - warn
+    - all
+  'no-console': warn
+  'no-debugger': warn
+  'no-empty': warn
+  'no-lone-blocks': off
+  'no-undef-init': warn
+  'prefer-const': warn
+
+  '@typescript-eslint/array-type':
+    - warn
+    - default: array
+      readonly: array
+  '@typescript-eslint/consistent-indexed-object-style':
+    - warn
+    - record
+  '@typescript-eslint/consistent-type-assertions':
+    - error
+    - assertionStyle: as
+      objectLiteralTypeAssertions: never
+  '@typescript-eslint/consistent-type-definitions':
+    - warn
+    - interface
+  '@typescript-eslint/no-invalid-void-type': error
+  '@typescript-eslint/unified-signatures': error
+
+  'import/order':
+    - warn
+    - groups:
+        - builtin
+        - external
+        - internal
+        - sibling
+        - index
+        - type
+      alphabetize:
+        order: asc
+        caseInsensitive: false
+      newlines-between: always
+  'import/no-unused-modules':
+    - warn
+    - unusedExports: true
+      src: [src]
+      ignoreExports:
+        - 'src/index.ts'
+
+  'prefer-arrow/prefer-arrow-functions':
+    - error
+    - disallowPrototype: true
+
+  'promise/prefer-await-to-then': error
+
+  'unicorn/catch-error-name': warn
+  'unicorn/explicit-length-check': off
+  'unicorn/no-array-reduce': off
+  'unicorn/no-null': off
+  'unicorn/no-zero-fractions': warn
+  'unicorn/prefer-array-flat-map': warn
+  'unicorn/prevent-abbreviations': off
+
+  # The code below is necessary for some deps to work properly.
+  # Therefore, it is not recommended to modify it.
+  # - TypeScript
+  'unicorn/no-useless-undefined': off
+
+  # - Vite
+  '@typescript-eslint/consistent-type-imports':
+    - warn
+    - prefer: type-imports
+      disallowTypeAnnotations: true
+
+  # - Prettier
+  'prettier/prettier': warn
+
+  # - ESlint
+  'yml/plain-scalar': off
+
+  # - eslint-plugin-unused-imports
+  '@typescript-eslint/no-unused-vars': off
+  'unused-imports/no-unused-imports': error
+  'unused-imports/no-unused-vars':
+    - warn
+    - vars: all
+      varsIgnorePattern: ^_
+      args: after-used
+      argsIgnorePattern: ^_
+
+settings:
+  'import/parsers':
+    '@typescript-eslint/parser': ['.ts']
+  'import/resolver':
+    typescript:
+      project: 'tsconfig.json'
+
+overrides:
+  - files: '*.ts'
+    excludedFiles: 'cypress/**/*.spec.ts'
+    parserOptions:
+      project: 'tsconfig.json'
+    rules:
+      '@typescript-eslint/consistent-type-exports':
+        - warn
+        - fixMixedExportsWithInlineTypeSpecifier: true
+
+      '@typescript-eslint/no-unnecessary-condition': error
+      '@typescript-eslint/no-unnecessary-type-arguments': warn
+
+      'padding-line-between-statements': off
+      '@typescript-eslint/padding-line-between-statements':
+        - warn
+        - blankLine: always
+          prev: import
+          next: '*'
+        - blankLine: any
+          prev: import
+          next: import
+
+      'require-await': off
+      '@typescript-eslint/require-await': error
+
+      'no-return-await': off
+      '@typescript-eslint/return-await':
+        - error
+        - never
+
+  - files: '*.test.ts'
+    rules:
+      '@typescript-eslint/ban-types': off
+      '@typescript-eslint/no-empty-function': off
+      '@typescript-eslint/no-explicit-any': off
+
+  - files: ['*.json', '*.json5', '*.jsonc']
+    parser: 'jsonc-eslint-parser'
+
+  - files: ['*.yaml', '*.yml']
+    parser: 'yaml-eslint-parser'

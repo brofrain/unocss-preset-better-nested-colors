@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "allowUnreachableCode": false,
-    "emitDeclarationOnly": true,
     "esModuleInterop": true,
     "exactOptionalPropertyTypes": true,
     "declaration": true,
@@ -11,14 +10,13 @@
     "moduleResolution": "node",
     "noImplicitOverride": true,
     "noImplicitReturns": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
     "outDir": "dist",
     "removeComments": true,
     "skipLibCheck": true,
     "sourceMap": false,
     "strict": true,
-    "target": "ESNext"
+    "target": "ESNext",
+    "types": ["vite/client", "vitest/globals"]
   },
-  "include": ["src/index.ts"]
+  "exclude": ["coverage", "dist", "node_modules"]
 }
