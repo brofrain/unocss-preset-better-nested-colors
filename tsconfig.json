@@ -6,6 +6,7 @@
     "declaration": true,
     "forceConsistentCasingInFileNames": true,
     "incremental": false,
+    "lib": ["ESNext"],
     "module": "ESNext",
     "moduleResolution": "node",
     "noImplicitOverride": true,
@@ -16,7 +17,7 @@
     "sourceMap": false,
     "strict": true,
     "target": "ESNext",
-    "types": ["vite/client", "vitest/globals"]
+    "types": ["vitest/globals"]
   },
   "exclude": ["coverage", "dist", "node_modules"]
 }
