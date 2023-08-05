@@ -6,5 +6,5 @@ export const isStr = (value: unknown): value is string =>
 
 export const kebabize = (str: string) =>
   str
-    .replace(/[A-Z\u00C0-\u00D6\u00D8-\u00DE]/g, (match) => '-' + match)
+    .replaceAll(/[A-Z\u00C0-\u00D6\u00D8-\u00DE]/g, (match) => '-' + match)
     .toLowerCase()

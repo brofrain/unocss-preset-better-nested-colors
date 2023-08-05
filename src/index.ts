@@ -16,8 +16,8 @@ const mergeKeys = (keyA: string, keyB: string) =>
   kebabize(
     `${keyA}-${keyB}`.replace(
       '-' + THEME_COLORS_VARIANT_KEY_PREFIX,
-      THEME_COLORS_VARIANT_KEY_PREFIX
-    )
+      THEME_COLORS_VARIANT_KEY_PREFIX,
+    ),
   ).replace(/-$/, '')
 
 const makeFlatColorsWithSuffix = (colors: ThemeColors) => {
@@ -50,14 +50,14 @@ const makeFlatColorsWithSuffix = (colors: ThemeColors) => {
 const inheritColorFromParent = (
   colorsWithPrefix: Record<string, string>,
   prefixedKeys: string[],
-  key: string
+  key: string,
 ) => {
   const potentialParents = prefixedKeys.filter(
     (parentKey) =>
       parentKey in colorsWithPrefix &&
       key.length > parentKey.length &&
       key.includes(parentKey) &&
-      !key.endsWith(parentKey) // ignore adjacent variants
+      !key.endsWith(parentKey), // ignore adjacent variants
   )
 
   if (!potentialParents.length) {
@@ -69,7 +69,7 @@ const inheritColorFromParent = (
     .slice(1)
     .reduce(
       (keyA, keyB) => (keyA.length > keyB.length ? keyA : keyB),
-      potentialParents[0]
+      potentialParents[0],
     )
 
   colorsWithPrefix[key] = colorsWithPrefix[closestParent]
@@ -78,7 +78,7 @@ const inheritColorFromParent = (
 const setColorByReference = (
   colorsWithPrefix: Record<string, string>,
   colorsWithSuffix: Record<string, string>,
-  key: string
+  key: string,
 ) => {
   const referenceKey = colorsWithPrefix[key]
 
@@ -94,10 +94,10 @@ const setColorByReference = (
 
 const fillColorValues = (
   colorsWithPrefix: Record<string, string>,
-  colorsWithSuffix: Record<string, string>
+  colorsWithSuffix: Record<string, string>,
 ) => {
   const prefixedKeys = Object.keys(colorsWithPrefix).sort(
-    (keyA, keyB) => keyA.length - keyB.length
+    (keyA, keyB) => keyA.length - keyB.length,
   )
 
   for (const key of prefixedKeys) {
@@ -132,7 +132,7 @@ const makeFlatColorsWithPrefix = (colors: ThemeColors) => {
       }
 
       return [newKey, value]
-    })
+    }),
   )
 
   fillColorValues(colorsWithPrefix, colorsWithSuffix)
@@ -174,7 +174,7 @@ const makeDynamicColors = (colors: ThemeColors) => {
       }
 
       const [variantGroup, variantGroupValue] = Object.entries(
-        item.variantGroups
+        item.variantGroups,
       )[0]
 
       previousItemOfSameName.variantGroups[variantGroup] = variantGroupValue
@@ -196,20 +196,20 @@ const makeDynamicColorsShortcuts = (colors: ThemeColors) =>
         '$',
       ]
         .join('')
-        .replaceAll(' ', '')
+        .replaceAll(' ', ''),
     )
 
     const variantGroupsEntries = Object.entries(variantGroups).map(
       ([prefix, color]) => [
         prefix,
         color.replaceAll(' ', '_'), // handle whitespaces
-      ]
+      ],
     )
 
     let attributifyPrefix: string | null | undefined // `null` - no Attributify Mode OR prefix is disabled | `undefined` - not checked for the prefix yet
     const setAttributifyPrefix = ({ generator }: RuleContext) => {
       const attributifyConfig = generator.config.presets.find(
-        ({ name }) => name === '@unocss/preset-attributify'
+        ({ name }) => name === '@unocss/preset-attributify',
       )
 
       if (attributifyConfig) {
@@ -248,7 +248,7 @@ const makeDynamicColorsShortcuts = (colors: ThemeColors) =>
           variantGroupsEntries
             .map(
               ([prefix, color]) =>
-                `${prefix}${utilityClass.replaceAll(colorName, `[${color}]`)}`
+                `${prefix}${utilityClass.replaceAll(colorName, `[${color}]`)}`,
             )
             .join(' ')
         )
